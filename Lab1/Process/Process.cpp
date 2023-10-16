@@ -11,18 +11,13 @@ int main(int argc, char* argv) {
     si.cb = sizeof(si);
     ZeroMemory(&pi, sizeof(pi));
 
-    //if (argc != 2)  
-    //{
-    //    printf("Usage: %s [cmdline]\n", argv[0]);
-    //    return;
-    //}
-
-    if (!CreateProcess(NULL,   
-        //argv[1],
+    if (!CreateProcess(   
+        L"M:\\MyFolder\\University\\OS\\Lab1\\Signal\\x64\\Debug\\Signal.exe",
+        NULL,
         NULL,           
         NULL,           
         FALSE,          
-        0,              
+        CREATE_NEW_CONSOLE,    // можно оставить 0 и будет 1 консоль
         NULL,           
         NULL,          
         &si,           
@@ -33,6 +28,10 @@ int main(int argc, char* argv) {
     }
 
     WaitForSingleObject(pi.hProcess, INFINITE);
+
+    DWORD exitCode = 1;
+    GetExitCodeProcess(pi.hProcess, &exitCode);
+    std::cout << "Process ended with code: " << exitCode;
 
     CloseHandle(pi.hProcess);
     CloseHandle(pi.hThread);
