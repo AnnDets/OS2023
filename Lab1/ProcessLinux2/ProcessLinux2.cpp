@@ -1,5 +1,5 @@
 #include <iostream>
-#include <windows.h>
+#include <unistd.h>
 #include <stdio.h>
 #include <tchar.h>
 
@@ -11,17 +11,17 @@ int main(int argc, char* argv) {
     si.cb = sizeof(si);
     ZeroMemory(&pi, sizeof(pi));
 
-    if (!CreateProcess(   
+    if (!CreateProcess(
         L"M:\\MyFolder\\University\\OS\\Lab1\\Signal\\x64\\Debug\\Signal.exe",
         NULL,
-        NULL,           
-        NULL,           
-        FALSE,          
+        NULL,
+        NULL,
+        FALSE,
         0,    // можно оставить 0 и будет 1 консоль или CREATE_NEW_CONSOLE и 2 консоли
-        NULL,           
-        NULL,          
-        &si,           
-        &pi)           
+        NULL,
+        NULL,
+        &si,
+        &pi)
         )
     {
         printf("CreateProcess failed (%d).\n", GetLastError());
