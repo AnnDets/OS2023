@@ -17,7 +17,7 @@ int main(int argc, char* argv) {
         NULL,           
         NULL,           
         FALSE,          
-        0,    // можно оставить 0 и будет 1 консоль или CREATE_NEW_CONSOLE и 2 консоли
+        CREATE_NEW_CONSOLE,    // можно оставить 0 и будет 1 консоль или CREATE_NEW_CONSOLE и 2 консоли
         NULL,           
         NULL,          
         &si,           
