@@ -1,17 +1,22 @@
 ﻿#include <iostream>
-#include <conio.h>
-#include <windows.h>
+#include <csignal>
 
-int main() {
-	while (1) {
-		if (GetKeyState(VK_RSHIFT) & 0x8000) {
-			std::cout << "Right Shift key pressed" << std::endl;
-			return 1;
-		}
-		if (GetKeyState(VK_LCONTROL) & 0x8000) {
-			std::cout << "Left Control key pressed" << std::endl;
-			return 2;
-		}
-	}
+void signalHandler(int signal)
+{
+    std::cout << "signal received " << std::endl;
+
+    exit(signal);
 }
 
+int main()
+{
+    signal(SIGINT, signalHandler);
+
+    std::cout << "Waiting for a signal..." << std::endl;
+
+    while (true)
+    {
+    }
+
+    return 0;
+}
